@@ -16,6 +16,8 @@ public class ZoneController : MonoBehaviour {
 	//
 	private GameObject cube;
 	private bool state = false;
+	private GameObject light;
+	private GameObject particleSystem; 
 
 
 	// Use this for initialization
@@ -24,14 +26,16 @@ public class ZoneController : MonoBehaviour {
 		// finds sibling called Cube_M
 		cube = transform.parent.transform.Find("Cube_M").gameObject; 
 		transform.parent = null;
-
+		light = transform.Find ("Spotlight").gameObject;
+		//particleSystem
 	}
 
 	void OnTriggerEnter(Collider other) {
 
-		if (GameObject.ReferenceEquals( cube, other.gameObject)) {
-			Debug.Log ("state: true");
+		if (GameObject.ReferenceEquals( cube, other.gameObject)) {			
 			state = true;
+			light.SetActive (state);
+
 		}
 
 
@@ -39,9 +43,9 @@ public class ZoneController : MonoBehaviour {
 
 	void OnTriggerExit(Collider other) {		
 
-		if (GameObject.ReferenceEquals( cube, other.gameObject)) {
-			Debug.Log ("state: false");
+		if (GameObject.ReferenceEquals( cube, other.gameObject)) {						
 			state = false;
+			light.SetActive (state);
 		}
 
 	}
