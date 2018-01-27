@@ -12,7 +12,7 @@ public class MirrorController : MonoBehaviour {
 	//
 	// private instance variables
 	//
-	private bool debug  = true;
+	private bool debug  = false;
 	private float speed = 3f;
 
 	private GameObject mirrorObj;

@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour {
 	//
 	private GameObject obj;
 
-	private float pickDistance = 25f;
-	private float holdDistance = 18f;
-	private float downDistance = 5f;
+	private float pickDistance = 5f;
+	private float holdDistance = 4f;
+	private float downDistance = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour {
 				
 			RaycastHit hit;
 			if (Physics.Raycast (transform.position, transform.forward, out hit, pickDistance)) {
+
 				if (Input.GetKeyDown ("x")) {
 					obj = hit.collider.gameObject;
-
+					obj.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ; 
 				}
 			}
 
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 			obj.transform.position = transform.position + transform.forward * holdDistance + -1 * transform.up * downDistance;
 
 			if (Input.GetKeyDown ("x")) {
+				obj.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 				obj = null;
 
 			}
