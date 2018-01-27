@@ -27,7 +27,7 @@ public class ZoneController : MonoBehaviour {
 		cube = transform.parent.transform.Find("Cube_M").gameObject; 
 		transform.parent = null;
 		light = transform.Find ("Spotlight").gameObject;
-		//particleSystem
+		particleSystem = transform.Find ("Particle System").gameObject;
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -35,6 +35,7 @@ public class ZoneController : MonoBehaviour {
 		if (GameObject.ReferenceEquals( cube, other.gameObject)) {			
 			state = true;
 			light.SetActive (state);
+			particleSystem.GetComponent<ParticleSystem> ().Play ();
 
 		}
 
@@ -46,6 +47,7 @@ public class ZoneController : MonoBehaviour {
 		if (GameObject.ReferenceEquals( cube, other.gameObject)) {						
 			state = false;
 			light.SetActive (state);
+			particleSystem.GetComponent<ParticleSystem> ().Stop ();
 		}
 
 	}

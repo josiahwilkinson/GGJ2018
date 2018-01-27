@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast (transform.position, transform.forward, out hit, pickDistance)) {
 
-				if (Input.GetKeyDown ("x")) {
+				if (Input.GetKeyDown ("x") && hit.collider.gameObject.tag == "cube") {
 					obj = hit.collider.gameObject;
 					obj.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ; 
 				}
